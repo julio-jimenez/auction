@@ -1,0 +1,22 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args:
+      [
+        '-c',
+        'docker build -t gcr.io/$PROJECT_ID/${REPO_NAME}:${COMMIT_SHA} --build-arg REDIS_HOST=${_REDIS_HOST} --build-arg REDIS_PORT=${_REDIS_PORT} --build-arg MONGO_URL=${_MONGO_URL} --build-arg AMQP_URL=${_AMQP_URL} .',
+      ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/${REPO_NAME}:${COMMIT_SHA}']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      [
+        'app',
+        'deploy',
+        '--image-url',
+        'gcr.io/${PROJECT_ID}/${REPO_NAME}:${COMMIT_SHA}',
+        '--quiet',
+        '--version=1',
+      ]

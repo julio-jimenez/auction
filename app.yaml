@@ -1,0 +1,22 @@
+runtime: custom
+service: auction
+api_version: '1.0'
+env: flexible
+threadsafe: true
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 10
+  cpu_utilization:
+    target_utilization: 0.70
+network:
+  instance_tag: demo
+  forwarded_ports:
+    - '3000:3000'
+resources:
+  cpu: 1
+  memory_gb: 2
+  disk_size_gb: 10
+  volumes:
+    - name: ramdisk1
+      volume_type: tmpfs
+      size_gb: 1
