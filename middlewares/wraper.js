@@ -8,8 +8,8 @@ module.exports = function responseWrapper(response, status, req) {
     const time = Math.round(unix / 1000)
     const body = {
     Meta: {
-      now: time,
-      requestId: uuid(),
+      ahorita: time,
+      blla: uuid(),
       status,
     },
     Result: response,
