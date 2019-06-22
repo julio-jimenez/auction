@@ -12,9 +12,9 @@ GET `/bids`
 <br>POST `/auction/:id/stop`
 <br>POST `/auction/:id/start`
 <br>POST`/auction`
-<br>>   body ```{description: String , startingPrice: Number, item: String, email: String}```
+<br>   body ```{description: String , startingPrice: Number, item: String, email: String}```
 <br>POST `/bid`
-<br>>   body ```{ email: String , auctionId: ObjectId, amount: Number }```
+<br>   body ```{ email: String , auctionId: ObjectId, amount: Number }```
 
 ## note
 Auction will end automatically in 30 minutes.
